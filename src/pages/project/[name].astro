@@ -1,0 +1,228 @@
+---
+import Close from "@/components/Close.astro";
+import ProjectInfo from "@/components/ProjectInfo.astro";
+import ProjectLabel from "@/components/ProjectLabel.astro";
+import ProjectTag from "@/components/ProjectTag.astro";
+import StackItem from "@/components/StackItem.astro";
+import Layout from "@/layouts/Layout.astro";
+
+import { DATA } from "@/data";
+
+export function getStaticPaths() {
+  return DATA.projects.map((project) => ({
+    params: { name: project.name },
+    props: { project },
+  }));
+}
+
+const {
+  project: {
+    name,
+    company,
+    projectTitle,
+    pictureHome,
+    colors,
+    body,
+    roles,
+    font,
+    stack,
+    screens,
+  },
+} = Astro.props;
+---
+
+<Layout
+  title={`${company} - ${projectTitle} | Alvaro Montero`}
+  description={body}
+>
+  <main class="bg-light min-h-screen">
+    <Close />
+
+    <header
+      class="h-[45vh] lg:h-[65vh] flex items-center justify-center relative overflow-hidden"
+      style={`background-color: ${colors[0]};`}
+    >
+      <div
+        class="absolute inset-0 opacity-20 bg-center bg-no-repeat bg-cover"
+        style={`background-image: url('${pictureHome}')`}
+        transition:name={`bg-${name}`}
+      >
+      </div>
+      <div class="container mx-auto px-4 text-center relative z-10">
+        <h1
+          class="text-5xl lg:text-7xl font-light mb-4"
+          style={`color: ${colors[1]}`}
+          transition:name={`company-${name}`}
+        >
+          {company}
+        </h1>
+        <p
+          class="text-2xl lg:text-4xl text-white font-light mb-6"
+          transition:name={`title-${name}`}
+        >
+          {projectTitle}
+        </p>
+      </div>
+    </header>
+    <article
+      class="block lg:flex gap-8 lg:gap-16 items-start container bg-light px-8"
+    >
+      <section class="lg:w-1/4 lg:sticky top-0 lg:text-right grid gap-4 pt-8">
+        <div>
+          <ProjectLabel>Project</ProjectLabel>
+          <ProjectInfo>{projectTitle}</ProjectInfo>
+        </div>
+        <div>
+          <ProjectLabel>Company</ProjectLabel>
+          <ProjectInfo>{company}</ProjectInfo>
+        </div>
+        <div>
+          <ProjectLabel>Role</ProjectLabel>
+          {roles.map((role) => <ProjectInfo>{role}</ProjectInfo>)}
+        </div>
+      </section>
+      <div class="border-t border-text/20 h-0.5 lg:hidden mt-8"></div>
+      <section class="flex-1 flex flex-col gap-8 py-8">
+        <div>
+          <ProjectTag>Introduction</ProjectTag>
+          <p class="text-text">{body}</p>
+        </div>
+        <div class="border-t border-text/20 h-0.5"></div>
+        <div>
+          <ProjectTag>Design</ProjectTag>
+          <ProjectLabel>Color Palette</ProjectLabel>
+          <ul class="flex flex-wrap gap-3 mt-2 mb-4">
+            {
+              colors.map((color: string) => (
+                <li class="bg-white rounded-xl p-2 lg:p-3">
+                  <span
+                    class="rounded-xl h-24 lg:h-28 w-24 lg:w-28 block"
+                    style={`background-color: ${color}`}
+                  />
+                  <p class="uppercase pt-3">{color}</p>
+                </li>
+              ))
+            }
+          </ul>
+          <ProjectLabel>Typography</ProjectLabel>
+          <ul
+            class="text-4xl text-text wrap-anywhere"
+            style={`font-family: ${font.face}, sans-serif;`}
+          >
+            <li>{font.face}</li>
+            <li>ABCDEFGHIJKLMNOPQRSTVWXYZ</li>
+            <li>abcdefghijklmnopqrstvwxyz</li>
+            <li>123456789</li>
+          </ul>
+        </div>
+
+        <div class="border-t border-text/20 h-0.5"></div>
+        <div>
+          <ProjectTag>Code Stack</ProjectTag>
+          <ul class="flex flex-wrap">
+            {
+              stack.map((tech) => (
+                <li class="w-18">
+                  <StackItem isDark icon={tech.icon} title={tech.title} />
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+        <div class="border-t border-text/20 h-0.5"></div>
+        <div>
+          <ProjectTag>Screens</ProjectTag>
+          <ul class="column-gap-8 md:columns-2 lg:columns-3">
+            {
+              screens.map((screen, index) => (
+                <li class="shadow-img p-4 bg-white mb-4 w-fit">
+                  <img
+                    src={screen}
+                    alt={`Screen ${index + 1}`}
+                    class="cursor-pointer hover:opacity-90 transition-opacity image-thumbnail max-w-full"
+                    data-image-src={screen}
+                  />
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </section>
+    </article>
+
+    <!-- Image Modal -->
+    <div
+      id="imageModal"
+      class="fixed inset-0 bg-black/80 hidden items-center justify-center z-200 p-[5vh]"
+    >
+      <div class="relative max-w-[90vw] max-h-[90vh] overflow-auto">
+        <Close onClick="closeModal(); return false;" />
+        <img
+          id="modalImage"
+          src=""
+          alt=""
+          class="max-w-full h-auto mx-auto block"
+        />
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<script>
+  function closeModal(event?: Event) {
+    event?.preventDefault();
+    event?.stopPropagation();
+    const modal = document.getElementById("imageModal");
+    if (modal) {
+      modal.classList.add("hidden");
+      modal.classList.remove("flex");
+      document.body.style.overflow = "initial";
+    }
+  }
+
+  (window as any).closeModal = closeModal;
+
+  function setupModal() {
+    const modal = document.getElementById("imageModal");
+    const modalImage = document.getElementById(
+      "modalImage",
+    ) as HTMLImageElement;
+    const thumbnails = document.querySelectorAll(".image-thumbnail");
+
+    if (!modal || !modalImage) return;
+
+    thumbnails.forEach((thumbnail) => {
+      thumbnail.addEventListener("click", (e) => {
+        const target = e.target as HTMLImageElement;
+        const imageSrc = target.getAttribute("data-image-src");
+        const imageAlt = target.getAttribute("alt");
+
+        if (imageSrc) {
+          modalImage.src = imageSrc;
+          modalImage.alt = imageAlt || "";
+          modal.classList.remove("hidden");
+          modal.classList.add("flex");
+          document.body.style.overflow = "hidden";
+        }
+      });
+    });
+
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) {
+        closeModal();
+      }
+    });
+
+    const handleKeydown = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && !modal.classList.contains("hidden")) {
+        closeModal();
+      }
+    };
+    document.addEventListener("keydown", handleKeydown);
+  }
+
+  setupModal();
+
+  // Run after view transitions
+  document.addEventListener("astro:page-load", setupModal);
+</script>

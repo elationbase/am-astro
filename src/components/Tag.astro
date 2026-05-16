@@ -1,0 +1,31 @@
+<hgroup class="animate-hero-text">
+  <h1
+    class="mt-4 mb-2 text-4xl font-bold text-white leading-none"
+  >
+    I'm a Alvaro Montero
+  </h1>
+  <h2
+    class="font-black relative text-xl pb-2 bg-clip-text text-transparent bg-no-repeat bg-linear-to-r from-purple-500 via-violet-500 to-pink-500 leading-none"
+  >
+    a Creative Technologist, here is stuff about me.
+  </h2>
+</hgroup>
+
+<style>
+  @keyframes heroExitTxt {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+
+  .animate-hero-text {
+    animation: heroExitTxt linear;
+    animation-timeline: view();
+    animation-range: exit;
+  }
+</style>

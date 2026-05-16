@@ -1,0 +1,131 @@
+---
+import StackItem from "@/components/StackItem.astro";
+import Skew from "./Skew.astro";
+
+const stack = {
+  headline: "Typical technology stack",
+  tools: [
+    {
+      icon: "icon-ts",
+      title: "TypeScript",
+    },
+    {
+      icon: "icon-nextjs",
+      title: "Next.js",
+    },
+    {
+      icon: "icon-react",
+      title: "React",
+    },
+    {
+      icon: "icon-vue",
+      title: "VueJS",
+    },
+    {
+      icon: "icon-astro",
+      title: "Astro",
+    },
+    {
+      icon: "icon-jss",
+      title: "CSSinJS",
+    },
+    {
+      icon: "icon-tailwind",
+      title: "Tailwind CSS",
+    },
+    {
+      icon: "icon-storybook",
+      title: "Storybook",
+    },
+    {
+      icon: "icon-graphql",
+      title: "GraphQL",
+    },
+    {
+      icon: "icon-prisma",
+      title: "Prisma",
+    },
+    {
+      icon: "icon-firebase",
+      title: "Firebase",
+    },
+    {
+      icon: "icon-jest",
+      title: "Jest",
+    },
+    {
+      icon: "icon-testing-library",
+      title: "Testing Library",
+    },
+    {
+      icon: "icon-cypress",
+      title: "Cypress",
+    },
+    {
+      icon: "icon-git",
+      title: "Git",
+    },
+    {
+      icon: "icon-webpack",
+      title: "Webpack",
+    },
+    {
+      icon: "icon-vite",
+      title: "Vite",
+    },
+    {
+      icon: "icon-sentry",
+      title: "Sentry",
+    },
+    {
+      icon: "icon-electron",
+      title: "Electron",
+    },
+  ],
+};
+---
+
+<Skew>
+  <h2
+    class="text-3xl md:text-4xl lg:text-5xl text-center mb-12 text-light font-extralight"
+  >
+    {stack.headline}
+  </h2>
+
+  <div
+    class="grid grid-cols-3 sm:grid-cols-5 md:grid-cols-7 lg:grid-cols-9 xl:grid-cols-10 gap-8 md:gap-8 lg:gap-10"
+  >
+    {
+      stack.tools.map((tool) => (
+        <StackItem icon={tool.icon} title={tool.title} />
+      ))
+    }
+  </div>
+</Skew>
+
+<style>
+  .section-skew-in {
+    animation: skewIn linear;
+    animation-timeline: view();
+  }
+  @keyframes skewIn {
+    0% {
+      transform: skewY(-6deg);
+    }
+    100% {
+      transform: skewY(6deg);
+    }
+  }
+  .section-skew-out {
+    animation: skewOut linear;
+    animation-timeline: view();
+  }
+  @keyframes skewOut {
+    0% {
+      transform: skewY(6deg);
+    }
+    100% {
+      transform: skewY(-6deg);
+    }
+  }
+</style>

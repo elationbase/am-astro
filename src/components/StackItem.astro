@@ -1,0 +1,20 @@
+---
+type Props = {
+  icon: string;
+  title: string;
+  isDark?: boolean;
+};
+const { icon, title, isDark } = Astro.props;
+---
+
+<div
+  class={`flex flex-col items-center justify-center p-2 transition-colors ${isDark ? 'text-text' : 'text-light'} hover:text-salmon`}
+>
+  <div class="text-4xl md:text-5xl mb-2">
+    <svg viewBox="0 0 512 512" fill="currentColor" class="w-full h-full">
+      <use href={`#${icon}`}></use>
+    </svg>
+    <span class={icon}></span>
+  </div>
+  <span class={`text-xs text-center ${isDark ? 'text-text' : 'text-white'}`}>{title}</span>
+</div>

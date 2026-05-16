@@ -1,0 +1,36 @@
+<div class="overlow">
+  <section class="bg-blue section-skew-in2 py-4">
+    <div class="py-14 md:py-20 bg-dark section-skew-in">
+      <div class="section-skew-out container mx-auto px-4 sm:px-8 max-w-6xl">
+        <slot />
+      </div>
+    </div>
+  </section>
+</div>
+
+<style>
+  .section-skew-in {
+    animation: skewIn linear;
+    animation-timeline: view();
+  }
+  @keyframes skewIn {
+    0% {
+      transform: skewY(-4deg);
+    }
+    100% {
+      transform: skewY(4deg);
+    }
+  }
+  .section-skew-out {
+    animation: skewOut linear;
+    animation-timeline: view();
+  }
+  @keyframes skewOut {
+    0% {
+      transform: skewY(106deg);
+    }
+    100% {
+      transform: skewY(-106deg);
+    }
+  }
+</style>

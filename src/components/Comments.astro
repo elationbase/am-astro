@@ -1,0 +1,26 @@
+---
+import { DATA, type CommentsType } from "@/data";
+
+const comments: CommentsType = DATA.comments;
+---
+
+<section class="py-16 md:py-20 bg-light">
+  <div class="container mx-auto px-4 sm:px-8 max-w-6xl">
+    <h2 class="text-3xl md:text-4xl lg:text-5xl text-center mb-12 text-dark font-extralight">
+      Testimonials
+    </h2>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+      {comments.map(({comment, user}) => (
+        <div class="p-6 md:p-8 rounded transition-shadow hover:shadow-lg bg-white">
+          <p class="mb-6 leading-relaxed italic text-text font-light">
+            "{comment}"
+          </p>
+          <p class="text-salmon font-normal">
+            — {user}
+          </p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

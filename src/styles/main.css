@@ -1,0 +1,40 @@
+@font-face {
+  font-family: 'Maven Pro';
+  src: url('/fonts/mavenprolight-200-webfont.woff');
+  font-weight: 200;
+  font-style: normal
+}
+@font-face {
+  font-family: 'Maven Pro';
+  src: url('/fonts/MavenPro-Bold.woff2');
+  font-weight: 700;
+  font-style: normal
+}
+
+@import "tailwindcss";
+
+@theme {
+  /* Colors */
+  --color-dark: #2b303b;
+  --color-salmon: #e9967a;
+  --color-alt: #7b998e;
+  --color-text: #6e8390;
+  --color-text2: #b2a292;
+  --color-text3: #6a615d;
+  --color-light: #F1F1F1;
+  --color-blue: #3595ac;
+  --color-white: #FFFFFF;
+  --color-black: #000000;
+  --color-gray: #999999;
+
+  --shadow-img: 0 0 30px rgba(0,0,0,.2);
+  
+  /* Font family */
+  --font-family-sans: 'Maven Pro', Roboto, "Helvetica Neue", sans-serif;
+}
+
+body {
+  font-family: var(--font-family-sans);
+  background-color: var(--color-dark);
+  overflow-x: hidden;
+}
