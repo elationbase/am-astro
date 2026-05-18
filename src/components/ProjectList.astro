@@ -2,46 +2,59 @@
 import { DATA, type ProjectType } from "@/data";
 
 const projects: ProjectType[] = DATA.projects;
-
 ---
 
-<section class="py-16 md:py-20 bg-white" id="projects">
-  <div class="px-4 sm:px-8">
-    <h2 class="text-3xl md:text-4xl lg:text-5xl text-center mb-12 text-dark font-light">Projects</h2>
-    
+<section class="py-16 md:py-20 bg-darker" id="projects">
+  <div class="px-4 sm:px-8 mx-auto max-w-450">
     <nav aria-label="Projects navigation">
-      <ul class="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-1 mx-auto max-w-[1800px] list-none">
-        {projects.map(({name, important, pictureHome, company, projectTitle}) => (
-          <li class="mb-1 break-inside-avoid fade-in">
-            <a 
-              href={`/project/${name}`}
-              class:list={[
-                'project-link rounded-md shadow-sm relative overflow-hidden group block',
-                important ? 'h-140' : 'h-70'
-              ]}
-            >
-              <div 
-                class="absolute inset-0 bg-cover bg-center transition-all duration-500 group-hover:scale-110 group-hover:blur-sm"
-                style={{backgroundImage: `url('${pictureHome}')`}}
-                transition:name={`bg-${name}`}
-              />
-              <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center p-6 bg-dark/70">
-                <h3 
-                  class="text-2xl mb-2 text-light font-light group-hover:scale-100 scale-150 origin-left group-hover:blur-none blur-sm transition-all delay-150 ease-in-out duration-500"
-                  transition:name={`company-${name}`}
+      <h1 class="text-3xl md:text-4xl lg:text-5xl text-light font-extralight">
+        Projects<span>.</span>
+      </h1>
+      <h2
+        class="text-blue font-black uppercase relative text-xs pb-2 font-mono"
+      >
+        Chapter 03 | ~ 2026
+      </h2>
+
+      <hr class="my-10 border border-b-light/20" />
+      <ul
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 list-none"
+      >
+        {
+          projects.map(
+            ({ name, important, pictureHome, company, projectTitle }) => (
+              <li class="mb-4 break-inside-avoid fade-in p-4 bg-dark rounded-lg shadow-md hover:shadow-2xl">
+                <a
+                  href={`/project/${name}`}
+                  class:list={[
+                    "project-link rounded-md shadow-sm relative overflow-hidden group block",
+                    important ? "h-140" : "h-70",
+                  ]}
                 >
-                  {company}
-                </h3>
-                <p 
-                  class="text-lg text-salmon font-light group-hover:translate-y-0 translate-y-56 group-hover:opacity-100 opacity-0 transition-all ease-out duration-500 delay-500"
-                  transition:name={`title-${name}`}
-                >
-                  {projectTitle}
-                </p>
-              </div>
-            </a>
-          </li>
-        ))}
+                  <div
+                    class="absolute inset-0 bg-cover bg-center transition-all duration-500 group-hover:scale-110 group-hover:blur-sm"
+                    style={{ backgroundImage: `url('${pictureHome}')` }}
+                    transition:name={`bg-${name}`}
+                  />
+                  <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center p-6 bg-dark/70">
+                    <h3
+                      class="text-2xl mb-2 text-light font-light group-hover:scale-100 scale-150 origin-left group-hover:blur-none blur-sm transition-all delay-150 ease-in-out duration-500"
+                      transition:name={`company-${name}`}
+                    >
+                      {company}
+                    </h3>
+                    <p
+                      class="text-lg text-salmon group-hover:translate-y-0 translate-y-56 group-hover:opacity-100 opacity-0 transition-all ease-out duration-500 delay-500"
+                      transition:name={`title-${name}`}
+                    >
+                      {projectTitle}
+                    </p>
+                  </div>
+                </a>
+              </li>
+            ),
+          )
+        }
       </ul>
     </nav>
   </div>
@@ -54,13 +67,13 @@ const projects: ProjectType[] = DATA.projects;
     animation-timeline: view();
     animation-range: entry 0% entry 100%;
   }
-  
+
   @keyframes fade-in {
-    from { 
+    from {
       opacity: 0;
       transform: translateY(20px);
     }
-    to { 
+    to {
       opacity: 1;
       transform: translateY(0);
     }
@@ -71,13 +84,13 @@ const projects: ProjectType[] = DATA.projects;
       opacity: 1;
       animation: fade-in-fallback 0.6s ease-out forwards;
     }
-    
+
     @keyframes fade-in-fallback {
-      from { 
+      from {
         opacity: 0;
         transform: translateY(20px);
       }
-      to { 
+      to {
         opacity: 1;
         transform: translateY(0);
       }

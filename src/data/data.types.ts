@@ -1,5 +1,6 @@
 export type IntroType = {
   headline: string;
+  base: string;
   description: string[];
   skills: {
     icon: string;

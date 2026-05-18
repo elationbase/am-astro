@@ -1,14 +1,23 @@
 <hgroup class="animate-hero-text">
   <h1
-    class="mt-4 mb-2 text-4xl font-bold text-white leading-none"
+    class="mt-4 mb-2 text-center text-4xl font-bold text-white leading-none"
   >
-    I'm a Alvaro Montero
+    Software Engineer<span class="text-5xl text-blue">.</span>
   </h1>
   <h2
-    class="font-black relative text-xl pb-2 bg-clip-text text-transparent bg-no-repeat bg-linear-to-r from-purple-500 via-violet-500 to-pink-500 leading-none"
-  >
-    a Creative Technologist, here is stuff about me.
+    class="font-black text-white uppercase relative text-xs pb-2 font-mono flex justify-between"
+  > <span class=" text-blue">Creative Technologist</span>  <span>Chapter 01 | Intro</span>
+    
+
+
   </h2>
+
+    <div class="steam" aria-hidden="true">
+      <span class="wisp" />
+      <span class="wisp" />
+      <span class="wisp" />
+      <span class="wisp" />
+    </div>
 </hgroup>
 
 <style>
@@ -27,5 +36,48 @@
     animation: heroExitTxt linear;
     animation-timeline: view();
     animation-range: exit;
+  }
+
+
+  /* ─ Coffee steam ─ */
+  .steam {
+    position: absolute;
+    /* sits over the latte cup at bottom-right of the desk photo */
+    right: 5.5%;
+    bottom: 14%;
+    width: 90px;
+    height: 180px;
+    pointer-events: none;
+    z-index: 6;
+    filter: blur(6px);
+    mix-blend-mode: screen;
+    opacity: 0.85;
+  }
+  .steam .wisp {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 26px;
+    height: 38px;
+    margin-left: -13px;
+    background: radial-gradient(ellipse at 50% 60%,
+      rgba(255,255,255,0.95) 0%,
+      rgba(255,255,255,0.55) 35%,
+      rgba(255,255,255,0) 70%);
+    border-radius: 50%;
+    transform-origin: center bottom;
+    animation: rise-steam 5s ease-out infinite;
+    will-change: transform, opacity;
+  }
+  .steam .wisp:nth-child(1) { animation-delay: 0s;    left: 50%; }
+  .steam .wisp:nth-child(2) { animation-delay: 1.7s;  left: 38%; animation-duration: 4.6s; }
+  .steam .wisp:nth-child(3) { animation-delay: 3.2s;  left: 60%; animation-duration: 5.4s; }
+  .steam .wisp:nth-child(4) { animation-delay: 2.4s;  left: 46%; animation-duration: 4.8s; opacity: 0.7; }
+
+  @keyframes rise-steam {
+    0%   { transform: translate(0, 0) scale(0.55); opacity: 0; }
+    15%  { opacity: 0.9; }
+    50%  { transform: translate(8px, -70px) scale(1.2); opacity: 0.7; }
+    100% { transform: translate(-6px, -160px) scale(2.1); opacity: 0; }
   }
 </style>

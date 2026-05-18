@@ -1,26 +1,83 @@
 ---
-import { DATA, type CommentsType } from "@/data";
+import Skew from "./Skew.astro";
 
-const comments: CommentsType = DATA.comments;
+const comments = [
+  {
+    comment:
+      "Alvaro's clear understanding of his craft and ability to deliver have fostered a solid relationship with both our stakeholders and his team. Alvaro leverages his extensive domain knowledge to build confidence with stakeholders and effectively influence their design decisions. When presented with a problem, Alvaro is tenacious, not resting until a suitable solution is found.",
+    user: "Charlie Ward",
+    position: "VP of Product Technologies at Ultimate Software",
+  },
+  {
+    comment:
+      "Alvaro is a technical overlord. His vast knowledge and ability to anticipate and guide a development team has no equals. Alvaro is dedicated and takes care of every detail with and extreme sense of urgency. He can lead and jump in deep complex problems while collaborating with the team. Every development team needs an Alvaro to orchestrate, unfortunately there's only one. Given the opportunity I would work with Alvaro without hesitation.",
+    user: "Jorge Andres Padua Prieto",
+    position: "Product Manager at Walmart",
+  },
+  {
+    comment:
+      "I've watched Alvaro grow from an individual contributor to taking on the increasing responsibilities until he was entrusted with a leadership role. His passion for doing a great job is infectious and rubs off on all around him. He always keeps a calm attitude while never losing sight of the goal ahead of him. His attention to detail means no details gets lost. Alvaro is a person you want to be in your organization and I'd work with him again at any time.",
+    user: "Will Wheatley",
+    position: "Senior Devops Engineer at BEX Realty",
+  },
+];
 ---
 
-<section class="py-16 md:py-20 bg-light">
-  <div class="container mx-auto px-4 sm:px-8 max-w-6xl">
-    <h2 class="text-3xl md:text-4xl lg:text-5xl text-center mb-12 text-dark font-extralight">
-      Testimonials
-    </h2>
-    
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-      {comments.map(({comment, user}) => (
-        <div class="p-6 md:p-8 rounded transition-shadow hover:shadow-lg bg-white">
-          <p class="mb-6 leading-relaxed italic text-text font-light">
-            "{comment}"
+<Skew>
+  <h1 class="text-3xl md:text-4xl lg:text-5xl text-light font-extralight">
+    Kind words<span>.</span>
+  </h1>
+  <h2 class="text-blue font-black uppercase relative text-xs pb-2 font-mono">
+    Chapter 04 // comments
+  </h2>
+
+  <hr class="my-10 border border-b-light/20" />
+  {
+    comments.map(({ comment, user, position }) => (
+      <>
+        <div class="flex gap-6 items-start">
+          <p class="mb-6 leading-relaxed italic text-light font-light text-2xl flex-3">
+            <span class="text-salmon text-4xl">"</span>
+            {comment}
+            <span class="text-salmon text-4xl">"</span>
           </p>
-          <p class="text-salmon font-normal">
-            — {user}
-          </p>
+          <div class="flex gap-4 sticky top-20 flex-2 mt-3">
+            <hr class="mt-2 border border-b-light/20 flex-1" />
+            <p class="text-salmon font-mono flex-2">
+              <span class="block">{user}</span>
+              <span class="block text-light/40">{position}</span>
+            </p>
+          </div>
         </div>
-      ))}
-    </div>
-  </div>
-</section>
+        <hr class="my-10 border border-b-light/20" />
+      </>
+    ))
+  }
+</Skew>
+
+<style>
+  .section-skew-in {
+    animation: skewIn linear;
+    animation-timeline: view();
+  }
+  @keyframes skewIn {
+    0% {
+      transform: skewY(-6deg);
+    }
+    100% {
+      transform: skewY(6deg);
+    }
+  }
+  .section-skew-out {
+    animation: skewOut linear;
+    animation-timeline: view();
+  }
+  @keyframes skewOut {
+    0% {
+      transform: skewY(6deg);
+    }
+    100% {
+      transform: skewY(-6deg);
+    }
+  }
+</style>
