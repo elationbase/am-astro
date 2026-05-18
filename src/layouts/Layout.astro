@@ -6,25 +6,53 @@ import '../styles/main.css';
 type Props = {
   title: string;
   description: string;
+  image?: string;
+  ogType?: 'website' | 'article' | 'profile';
 }
 
-const { title, description } = Astro.props;
+const {
+  title,
+  description,
+  image = '/img/am-desk.jpg',
+  ogType = 'website',
+} = Astro.props;
+
+const siteName = 'Alvaro Montero';
+const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin).toString();
+const ogImage = new URL(image, Astro.site ?? Astro.url.origin).toString();
 ---
 
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+
     <title>{title}</title>
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    
-    <!-- Google Fonts - Maven Pro -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400..900&display=swap" rel="stylesheet">
-    
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+
+    <link rel="icon" type="image/x-icon" href="/favicon/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+    <link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#445869" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#445869" />
+
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content={siteName} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
     <ClientRouter />
   </head>
   <body class="font-maven antialiased bg-white text-dark">
