@@ -1,6 +1,8 @@
 # build output
 dist/
 .output/
+.wrangler/
+.astro/
 
 # dependencies
 node_modules/
@@ -20,3 +22,6 @@ pnpm-debug.log*
 
 # IDEs
 .idea/
+
+# LLMs
+.claude
