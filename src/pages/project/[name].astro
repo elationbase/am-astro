@@ -102,10 +102,10 @@ const fullScreens = await Promise.all(
               colors.map((color: string) => (
                 <li class="bg-white rounded-xl p-2 lg:p-3">
                   <span
-                    class="rounded-xl h-24 lg:h-28 w-24 lg:w-28 block"
+                    class="border rounded-xl h-24 lg:h-28 w-24 lg:w-28 block"
                     style={`background-color: ${color}`}
                   />
-                  <p class="uppercase pt-3">{color}</p>
+                  <p class="uppercase font-semibold pt-3 color-black">{color}</p>
                 </li>
               ))
             }
