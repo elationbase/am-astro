@@ -1,51 +1,19 @@
-  <p
-    class="cursor typewriter-animation font-mono text-center text-blue leading-none absolute! top-[15%] left-1/2 transform -translate-x-1/2 z-10 text-xl"
-  >
-    > Hi there!!!
-  </p>
-
-<style>
-  .cursor {
-    font-family: monospace;
-    text-align: center;
-    position: relative;
-    border-right: 2px solid rgba(255, 255, 255, 0.75);
-    white-space: nowrap;
-    overflow: hidden;
-    transform: translateY(-50%);
-  }
-
-  .typewriter-animation {
-    animation:
-      typewriter 2s steps(50) 1 normal both,
-      blinkingCursor 5s steps(50) normal forwards;
-  }
-
-  /* Individual delays */
-  .cursor {
-    animation-delay: 1s;
-  }
-
-  @keyframes typewriter {
-    0% {
-      width: 0;
-    }
-    100% {
-      width: 160px;
-    }
-  }
-  @keyframes blinkingCursor {
-    0% {
-      border-right-color: transparent;
-    }
-    1% {
-      border-right-color: rgba(255, 255, 255, 0.75);
-    }
-    99% {
-      border-right-color: transparent;
-    }
-    100% {
-      border-right-color: transparent;
-    }
-  }
-</style>
+---
+import TypeWriter from "./TypeWriter.astro";
+---
+<p
+  class="font-mono text-center text-salmon leading-none absolute! top-[20%] left-1/2 transform -translate-x-1/2 z-10 text-xl bg-dark/80 px-2"
+>
+  <TypeWriter
+    lines={[
+      "$ whoami",
+      "alvaro · creative technologist",
+      "$ ./say-hello",
+      "Hi there!!!",
+      "$ ../do-work",
+      "Building interfaces.",
+      "Shipping systems.",
+    ]}
+    color="#5ee0d6"
+  />
+</p>

@@ -1,3 +1,5 @@
+import type { ImageMetadata } from "astro";
+
 export type IntroType = {
   headline: string;
   base: string;
@@ -32,10 +34,10 @@ export type ProjectType = {
     url: string;
   };
   name: string;
-  pictureHome: string;
+  pictureHome: ImageMetadata;
   projectTitle: string;
   released: string;
-  screens: string[];
+  screens: ImageMetadata[];
   stack: {
     icon: string;
     title: string;

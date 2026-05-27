@@ -1,9 +1,10 @@
 ---
+import { Image, Picture, getImage } from "astro:assets";
 import Close from "@/components/Close.astro";
 import ProjectInfo from "@/components/ProjectInfo.astro";
 import ProjectLabel from "@/components/ProjectLabel.astro";
 import ProjectTag from "@/components/ProjectTag.astro";
-import StackItem from "@/components/StackItem.astro";
+import StackList from "@/components/StackList.astro";
 import Layout from "@/layouts/Layout.astro";
 
 import { DATA } from "@/data";
@@ -29,6 +30,10 @@ const {
     screens,
   },
 } = Astro.props;
+
+const fullScreens = await Promise.all(
+  screens.map((screen) => getImage({ src: screen, format: "webp" })),
+);
 ---
 
 <Layout
@@ -42,12 +47,13 @@ const {
       class="h-[45vh] lg:h-[65vh] flex items-center justify-center relative overflow-hidden"
       style={`background-color: ${colors[0]};`}
     >
-      <div
-        class="absolute inset-0 opacity-20 bg-center bg-no-repeat bg-cover"
-        style={`background-image: url('${pictureHome}')`}
+      <Image
+        src={pictureHome}
+        alt=""
+        loading="eager"
+        class="absolute inset-0 w-full h-full object-cover opacity-20"
         transition:name={`bg-${name}`}
-      >
-      </div>
+      />
       <div class="container mx-auto px-4 text-center relative z-10">
         <h1
           class="text-5xl lg:text-7xl font-light mb-4"
@@ -85,7 +91,7 @@ const {
       <section class="flex-1 flex flex-col gap-8 py-8">
         <div>
           <ProjectTag>Introduction</ProjectTag>
-          <p class="text-text">{body}</p>
+          <p class="text-black text-lg">{body}</p>
         </div>
         <div class="border-t border-text/20 h-0.5"></div>
         <div>
@@ -115,20 +121,7 @@ const {
             <li>123456789</li>
           </ul>
         </div>
-
-        <div class="border-t border-text/20 h-0.5"></div>
-        <div>
-          <ProjectTag>Code Stack</ProjectTag>
-          <ul class="flex flex-wrap">
-            {
-              stack.map((tech) => (
-                <li class="w-18">
-                  <StackItem isDark icon={tech.icon} title={tech.title} />
-                </li>
-              ))
-            }
-          </ul>
-        </div>
+        <StackList stack={stack} />
         <div class="border-t border-text/20 h-0.5"></div>
         <div>
           <ProjectTag>Screens</ProjectTag>
@@ -136,11 +129,17 @@ const {
             {
               screens.map((screen, index) => (
                 <li class="shadow-img p-4 bg-white mb-4 w-fit">
-                  <img
+                  <Picture
                     src={screen}
                     alt={`Screen ${index + 1}`}
+                    widths={[400, 800, 1200]}
+                    sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                    formats={["avif", "webp"]}
+                    loading="lazy"
+                    decoding="async"
                     class="cursor-pointer hover:opacity-90 transition-opacity image-thumbnail max-w-full"
-                    data-image-src={screen}
+                    data-image-src={fullScreens[index].src}
+                    data-image-alt={`Screen ${index + 1}`}
                   />
                 </li>
               ))

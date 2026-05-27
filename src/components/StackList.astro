@@ -1,0 +1,27 @@
+---
+import ProjectTag from "./ProjectTag.astro";
+import StackItem from "./StackItem.astro";
+
+type Props = {
+  stack: {
+    icon: string;
+    title: string;
+  }[];
+};
+const { stack } = Astro.props;
+---
+{stack?.length > 1 && (
+<div class="border-t border-text/20 h-0.5"></div>
+<div>
+  <ProjectTag>Code Stack</ProjectTag>
+  <ul class="flex flex-wrap">
+    {
+      stack.map((tech) => (
+        <li class="w-18">
+          <StackItem isDark icon={tech.icon} title={tech.title} />
+        </li>
+      ))
+    }
+  </ul>
+</div>
+)}

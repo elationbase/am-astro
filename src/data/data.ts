@@ -1,3 +1,16 @@
+import type { ImageMetadata } from "astro";
+
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/projects/**/*.{jpg,jpeg,png}",
+  { eager: true },
+);
+
+function img(path: string): ImageMetadata {
+  const mod = images[`/src/assets/projects/${path}`];
+  if (!mod) throw new Error(`Image not found at src/assets/projects/${path}`);
+  return mod.default;
+}
+
 export const DATA = {
   projects: [
     {
@@ -18,7 +31,7 @@ export const DATA = {
         url: "pepolsuniverse.com",
       },
       name: "Pepols-Universe",
-      pictureHome: "/img/projects/pepols/thumb.jpg",
+      pictureHome: img("pepols/thumb.jpg"),
       projectTitle: "Cartoons, Music & Creativity",
       released: "May 2026",
       roles: [
@@ -27,10 +40,10 @@ export const DATA = {
         "Backend & Infra",
       ],
       screens: [
-        "/img/projects/pepols/home.jpg",
-        "/img/projects/pepols/videos.jpg",
-        "/img/projects/pepols/crew.jpg",
-        "/img/projects/pepols/crew-mobile.jpg",
+        img("pepols/home.jpg"),
+        img("pepols/videos.jpg"),
+        img("pepols/crew.jpg"),
+        img("pepols/crew-mobile.jpg"),
       ],
       stack: [
         {
@@ -73,15 +86,15 @@ export const DATA = {
         url: "giagant.com",
       },
       name: "Giagant-Marketing",
-      pictureHome: "/img/projects/giagant-marketing/thumb.jpg",
+      pictureHome: img("giagant-marketing/thumb.jpg"),
       projectTitle: "Marketing Site",
       released: "May 2026",
       roles: ["UI Design", "Front-end Development", "Infrastructure"],
       screens: [
-        "/img/projects/giagant-marketing/home.jpg",
-        "/img/projects/giagant-marketing/plans.jpg",
-        "/img/projects/giagant-marketing/about.jpg",
-        "/img/projects/giagant-marketing/home-mobile.jpg",
+        img("giagant-marketing/home.jpg"),
+        img("giagant-marketing/plans.jpg"),
+        img("giagant-marketing/about.jpg"),
+        img("giagant-marketing/home-mobile.jpg"),
       ],
       stack: [
         {
@@ -136,7 +149,7 @@ export const DATA = {
         url: "app.giagant.com",
       },
       name: "Giagant-App",
-      pictureHome: "/img/projects/giagant-app/thumb.jpg",
+      pictureHome: img("giagant-app/thumb.jpg"),
       projectTitle: "AI Video Generation Platform",
       released: "May 2026",
       roles: [
@@ -146,11 +159,11 @@ export const DATA = {
         "Backend & Infra",
       ],
       screens: [
-        "/img/projects/giagant-app/dashboard.jpg",
-        "/img/projects/giagant-app/series.jpg",
-        "/img/projects/giagant-app/episodes.jpg",
-        "/img/projects/giagant-app/account.jpg",
-        "/img/projects/giagant-app/mobile.jpg",
+        img("giagant-app/dashboard.jpg"),
+        img("giagant-app/series.jpg"),
+        img("giagant-app/episodes.jpg"),
+        img("giagant-app/account.jpg"),
+        img("giagant-app/mobile.jpg"),
       ],
       stack: [
         {
@@ -213,26 +226,22 @@ export const DATA = {
         url: "www.chewy.com",
       },
       name: "Chewy-StoreFront",
-      pictureHome: "/img/projects/chewy/thumb.jpg",
+      pictureHome: img("chewy/thumb.jpg"),
       projectTitle: "Store Front",
       released: "May 2016",
-      roles: ["UX Design", "Lead Style Guide", "Front-end Developement"],
+      roles: ["UX Design", "Lead Style Guide", "Front-end Development"],
       screens: [
-        "/img/projects/chewy/chewy-product-phone.jpg",
-        "/img/projects/chewy/product-extended-page.jpg",
-        "/img/projects/chewy/app-landingpage.jpg",
-        "/img/projects/chewy/chewy-homepage.jpg",
-        "/img/projects/chewy/chewy-autoship.jpg",
-        "/img/projects/chewy/chewy-orders.jpg",
+        img("chewy/chewy-product-phone.jpg"),
+        img("chewy/product-extended-page.jpg"),
+        img("chewy/app-landingpage.jpg"),
+        img("chewy/chewy-homepage.jpg"),
+        img("chewy/chewy-autoship.jpg"),
+        img("chewy/chewy-orders.jpg"),
       ],
       stack: [
         {
           icon: "icon-sketch",
           title: "SketchApp",
-        },
-        {
-          icon: "icon-adobe",
-          title: "CreativeCloud",
         },
         {
           icon: "icon-sass",
@@ -265,6 +274,36 @@ export const DATA = {
       ],
     },
     {
+      body: "Front-end build for a GameStop online store concept — product browse, search, and checkout flows for the world's largest video game retailer. Component-based UI focused on fast navigation across consoles, games, collectibles, and pre-orders, with responsive layouts tuned for desktop and mobile shoppers",
+      colors: ["#0d6efd", "#eeeeee", "#000000", "#6610f2", "#d63384"],
+      company: "GameStop",
+      font: {
+        face: "Poppins",
+        family:
+          "Poppins, Open Sans, sans-serif",
+        local: true,
+        url: "",
+        weight: 100,
+      },
+      important: false,
+      index: 1,
+      link: {
+        active: true,
+        url: "gamestop.com",
+      },
+      name: "GameStop Online Store",
+      pictureHome: img("gamestop/thumb.jpg"),
+      projectTitle: "GameStop Online Store",
+      released: "June 2024",
+      roles: ["Front-end Development"],
+      screens: [
+        img("gamestop/01.jpg"),
+        img("gamestop/02.jpg"),
+        img("gamestop/03.jpg"),
+      ],
+      stack: [],
+    },
+    {
       body: "WebApp for Kaplan University, to help potential students get college credits for whether user you've been working for years, served in the military, or spent time volunteering, showcasing your knowledge through our credit-for-work experience courses could save you thousands of dollars and help you finish your Kaplan University undergraduate degree faster.",
       colors: ["#232a4d", "#0198ce", "#434b68", "#e0e0e0", "#333333"],
       company: "Kaplan University",
@@ -283,49 +322,16 @@ export const DATA = {
         url: "portfolio.kaplan.edu",
       },
       name: "Kaplan-Portfolio-Assessment",
-      pictureHome: "/img/projects/kaplan-portfolio/thumb.jpg",
+      pictureHome: img("kaplan-portfolio/thumb.jpg"),
       projectTitle: "Portfolio Assessment",
       released: "November 2013",
-      roles: ["Ideation", "UX Design", "Front-end Developement"],
+      roles: ["Ideation", "UX Design", "Front-end Development"],
       screens: [
-        "/img/projects/kaplan-portfolio/01-phone.jpg",
-        "/img/projects/kaplan-portfolio/01-tablet.jpg",
-        "/img/projects/kaplan-portfolio/01.jpg",
+        img("kaplan-portfolio/01-phone.jpg"),
+        img("kaplan-portfolio/01-tablet.jpg"),
+        img("kaplan-portfolio/01.jpg"),
       ],
-      stack: [
-        {
-          icon: "icon-sketch",
-          title: "SketchApp",
-        },
-        {
-          icon: "icon-adobe",
-          title: "CreativeCloud",
-        },
-        {
-          icon: "icon-css",
-          title: "CSS",
-        },
-        {
-          icon: "icon-html",
-          title: "HTML5 Video",
-        },
-        {
-          icon: "icon-jquery",
-          title: "jQuery",
-        },
-        {
-          icon: "icon-git",
-          title: "Git",
-        },
-        {
-          icon: "icon-angular",
-          title: "Angular",
-        },
-        {
-          icon: "icon-gulp",
-          title: "Gulp",
-        },
-      ],
+      stack: [],
     },
     {
       body: "The Brain lecture series 2015 Center for the Brain Health annual series sell-out public lecture series, delivers groundbreaking brain health research straight from renowned leaders of the field",
@@ -354,36 +360,15 @@ export const DATA = {
         url: "bhi.kaplan.edu",
       },
       name: "The-Brain-an-Owners-Guide",
-      pictureHome: "/img/projects/bhi/thumb.jpg",
+      pictureHome: img("bhi/thumb.jpg"),
       projectTitle: "The Brain: an Owners Guide",
       released: "January 2015",
-      roles: ["UX Design", "Front-end Developement"],
+      roles: ["UX Design", "Front-end Development"],
       screens: [
-        "/img/projects/bhi/bhi-lecture-series1.jpg",
-        "/img/projects/bhi/bhi-lecture-series2.jpg",
+        img("bhi/bhi-lecture-series1.jpg"),
+        img("bhi/bhi-lecture-series2.jpg"),
       ],
-      stack: [
-        {
-          icon: "icon-adobe",
-          title: "CreativeCloud",
-        },
-        {
-          icon: "icon-css",
-          title: "CSS",
-        },
-        {
-          icon: "icon-html",
-          title: "HTML5",
-        },
-        {
-          icon: "icon-jquery",
-          title: "jQuery",
-        },
-        {
-          icon: "icon-git",
-          title: "Git",
-        },
-      ],
+      stack: [],
     },
     {
       body: "Kaplan University presents Visionary Voices, a series of interviews that chronicle our goals in regards to adult education and continuing education throughout your life. Kaplan University offers online degree programs designed to expand the way you think and help you develop both personally and professionally. Students turn to us to develop their critical thinking skills, to challenge and prepare them for successful careers.",
@@ -403,80 +388,19 @@ export const DATA = {
         url: "visionaryvoices.kaplan.edu",
       },
       name: "Kaplan-Visionary-Voices",
-      pictureHome: "/img/projects/vv/thumb.jpg",
+      pictureHome: img("vv/thumb.jpg"),
       projectTitle: "Visionary Voices",
       released: "February 2014",
-      roles: ["UX Design", "Front-end Developement"],
+      roles: ["UX Design", "Front-end Development"],
       screens: [
-        "/img/projects/vv/home.jpg",
-        "/img/projects/vv/categories.jpg",
-        "/img/projects/vv/event.jpg",
-        "/img/projects/vv/categories-ui.jpg",
-        "/img/projects/vv/speakers.jpg",
-        "/img/projects/vv/home-ipad-nav.jpg",
+        img("vv/home.jpg"),
+        img("vv/categories.jpg"),
+        img("vv/event.jpg"),
+        img("vv/categories-ui.jpg"),
+        img("vv/speakers.jpg"),
+        img("vv/home-ipad-nav.jpg"),
       ],
-      stack: [
-        {
-          icon: "icon-adobe",
-          title: "CreativeCloud",
-        },
-        {
-          icon: "icon-css",
-          title: "CSS",
-        },
-        {
-          icon: "icon-html",
-          title: "HTML5",
-        },
-        {
-          icon: "icon-jquery",
-          title: "jQuery",
-        },
-        {
-          icon: "icon-git",
-          title: "Git",
-        },
-      ],
-    },
-    {
-      body: "Washington Redskins presents Playbook for Success, a series of interviews. Kaplan University, the exclusive higher education partner of The Washington Redskins, is giving you the chance to increase your draft ranking by going inside their playbook and having your strategies for success answered in a live, four-part speaker series.",
-      colors: [
-        "#145f62",
-        "#ff4900",
-        "#2caea6",
-        "#e5e5e5",
-        "#FFFFFF",
-        "#333333",
-      ],
-      company: "Washington Redskins",
-      font: {
-        face: "Open Sans",
-        family: "'Open Sans', sans-serif",
-        local: false,
-        url: "https://fonts.googleapis.com/css?family=Open+Sans:300",
-        weight: 200,
-      },
-      important: false,
-      index: 5,
-      link: {
-        active: false,
-        url: "redskins.kaplan.edu",
-      },
-      name: "Kaplan-Washington-Redskins",
-      pictureHome: "/img/projects/redskins/thumb.jpg",
-      projectTitle: "Playbook for Success",
-      released: "February 2014",
-      roles: ["UX Design"],
-      screens: [
-        "/img/projects/redskins/home1.jpg",
-        "/img/projects/redskins/home2.jpg",
-      ],
-      stack: [
-        {
-          icon: "icon-adobe",
-          title: "CreativeCloud",
-        },
-      ],
+      stack: [],
     },
     {
       body: "POC for the re-design of AARP Technology Education Knowledge platform.",
@@ -496,24 +420,19 @@ export const DATA = {
         url: "aarptek.aarp.org",
       },
       name: "AARP-TEK",
-      pictureHome: "/img/projects/aarp/thumb.jpg",
+      pictureHome: img("aarp/thumb.jpg"),
       projectTitle: "Technology Education Knowledge",
       released: "February 2014",
       roles: ["UX Design", "UI Design"],
       screens: [
-        "/img/projects/aarp/Home-02-phone.jpg",
-        "/img/projects/aarp/Home-02-tablet.jpg",
-        "/img/projects/aarp/Home-02.jpg",
+        img("aarp/Home-02-phone.jpg"),
+        img("aarp/Home-02-tablet.jpg"),
+        img("aarp/Home-02.jpg"),
       ],
-      stack: [
-        {
-          icon: "icon-adobe",
-          title: "CreativeCloud",
-        },
-      ],
+      stack: [],
     },
     {
-      body: "Hybrid App Developement with Cordova. This app will help you keep your sensible contacts private and secure by having a password protected phone book. Stop unwanted people see contacts that you don't want them to see.",
+      body: "Hybrid App Development with Cordova. This app will help you keep your sensible contacts private and secure by having a password protected phone book. Stop unwanted people see contacts that you don't want them to see.",
       colors: ["#2e383d", "#33bccb", "#ec6446", "#eeeeee", "#999999"],
       company: "ElationBase",
       font: {
@@ -530,50 +449,21 @@ export const DATA = {
         url: "elationbase.com/apps",
       },
       name: "EB-Private-Phonebook",
-      pictureHome: "/img/projects/pfb/thumb.jpg",
+      pictureHome: img("pfb/thumb.jpg"),
       projectTitle: "Private Phonebook",
       released: "September 2014",
-      roles: ["Ideation", "UX Design", "Hybrid App Developement"],
+      roles: ["Ideation", "UX Design", "Hybrid App Development"],
       screens: [
-        "/img/projects/pfb/elationbase-pphonebook-home.jpg",
-        "/img/projects/pfb/logo-private-phonebook.jpg",
-        "/img/projects/pfb/01-splash-s.jpg",
-        "/img/projects/pfb/02-password-s.jpg",
-        "/img/projects/pfb/03-phonebook-s.jpg",
-        "/img/projects/pfb/04-contact-s.jpg",
-        "/img/projects/pfb/06-settigs-light-s.jpg",
-        "/img/projects/pfb/07-contact-light-s.jpg",
+        img("pfb/elationbase-pphonebook-home.jpg"),
+        img("pfb/logo-private-phonebook.jpg"),
+        img("pfb/01-splash-s.jpg"),
+        img("pfb/02-password-s.jpg"),
+        img("pfb/03-phonebook-s.jpg"),
+        img("pfb/04-contact-s.jpg"),
+        img("pfb/06-settigs-light-s.jpg"),
+        img("pfb/07-contact-light-s.jpg"),
       ],
-      stack: [
-        {
-          icon: "icon-adobe",
-          title: "CreativeCloud",
-        },
-        {
-          icon: "icon-sass",
-          title: "CSS",
-        },
-        {
-          icon: "icon-html",
-          title: "HTML5",
-        },
-        {
-          icon: "icon-js",
-          title: "JavaScript",
-        },
-        {
-          icon: "icon-jquery",
-          title: "jQuery",
-        },
-        {
-          icon: "icon-git",
-          title: "Git",
-        },
-        {
-          icon: "icon-gulp",
-          title: "Gulp",
-        },
-      ],
+      stack: [],
     },
     {
       body: "Chewy Style Guide is a comprehensive “living document” that keeps track of all the repeating elements for a project, from branding rules down to the amount of beveling for call-to-action buttons. This Style guide also impart rules and suggested practices, including dos and don'ts.",
@@ -593,45 +483,16 @@ export const DATA = {
         url: "styleguide.chewy.com",
       },
       name: "Chewy-Style-Guide",
-      pictureHome: "/img/projects/cw-ui/thumb.jpg",
+      pictureHome: img("cw-ui/thumb.jpg"),
       projectTitle: "Style Guide / Component Library",
       released: "April 2017",
-      roles: ["Ideation", "UX Design", "Front-end Developement"],
+      roles: ["Ideation", "UX Design", "Front-end Development"],
       screens: [
-        "/img/projects/cw-ui/styleguide-design-tablet.jpg",
-        "/img/projects/cw-ui/styleguide-javascript.jpg",
-        "/img/projects/cw-ui/styleguide-home.jpg",
+        img("cw-ui/styleguide-design-tablet.jpg"),
+        img("cw-ui/styleguide-javascript.jpg"),
+        img("cw-ui/styleguide-home.jpg"),
       ],
-      stack: [
-        {
-          icon: "icon-sketch",
-          title: "SketchApp",
-        },
-        {
-          icon: "icon-sass",
-          title: "SCSS",
-        },
-        {
-          icon: "icon-html",
-          title: "HTML5",
-        },
-        {
-          icon: "icon-vue",
-          title: "Vue JS",
-        },
-        {
-          icon: "icon-jquery",
-          title: "jQuery",
-        },
-        {
-          icon: "icon-git",
-          title: "Git",
-        },
-        {
-          icon: "icon-webpack",
-          title: "Webpack",
-        },
-      ],
+      stack: [],
     },
     {
       body: "Part of Kaplan University,* Open College at Kaplan University (OC@KU) provides access to free and low-cost open resources to support students with prior college-level learning during every step of their educational journey. This unconventional approach to education removes traditional barriers to college credit by placing learners in an open environment, which encourages independent and critical thinking. OC@KU encourages learners to take control of their education in a supportive, online environment.",
@@ -651,41 +512,16 @@ export const DATA = {
         url: "opencollege.kaplan.edu",
       },
       name: "Kaplan-Open-College",
-      pictureHome: "/img/projects/openlearning/thumb.jpg",
+      pictureHome: img("openlearning/thumb.jpg"),
       projectTitle: "Open College",
       released: "September 2015",
-      roles: ["Ideation", "UX Design", "Front-end Developement"],
+      roles: ["Ideation", "UX Design", "Front-end Development"],
       screens: [
-        "/img/projects/openlearning/openlearning-homepage.jpg",
-        "/img/projects/openlearning/openlearning-courses.jpg",
-        "/img/projects/openlearning/openlearning-instructors.jpg",
+        img("openlearning/openlearning-homepage.jpg"),
+        img("openlearning/openlearning-courses.jpg"),
+        img("openlearning/openlearning-instructors.jpg"),
       ],
-      stack: [
-        {
-          icon: "icon-adobe",
-          title: "CreativeCloud",
-        },
-        {
-          icon: "icon-sass",
-          title: "CSS",
-        },
-        {
-          icon: "icon-html",
-          title: "HTML5",
-        },
-        {
-          icon: "icon-js",
-          title: "JavaScript",
-        },
-        {
-          icon: "icon-jquery",
-          title: "jQuery",
-        },
-        {
-          icon: "icon-git",
-          title: "Git",
-        },
-      ],
+      stack: [],
     },
     {
       body: "Developed two custom jQuery plugins: eb Panel Nav Hashtag: A complete navigation system with panel transitions and hashtag enabled. And Password Requirements: The easy way to help users meet your minimum password requirements",
@@ -705,42 +541,17 @@ export const DATA = {
         url: "elationbase.com/elation-flat-touch",
       },
       name: "EB-Themes",
-      pictureHome: "/img/projects/eb-theme/thumb.jpg",
+      pictureHome: img("eb-theme/thumb.jpg"),
       projectTitle: "Custom Themes",
       released: "September 2014",
-      roles: ["UX Design", "Front-end Developement"],
+      roles: ["UX Design", "Front-end Development"],
       screens: [
-        "/img/projects/eb-theme/eb-elation-flat-touch-landingpage.jpg",
-        "/img/projects/eb-theme/eb-elation-flat-touch-homepage.jpg",
-        "/img/projects/eb-theme/eb-elation-flat-touch-categorypage.jpg",
-        "/img/projects/eb-theme/eb-elation-flat-touch-productpage.jpg",
+        img("eb-theme/eb-elation-flat-touch-landingpage.jpg"),
+        img("eb-theme/eb-elation-flat-touch-homepage.jpg"),
+        img("eb-theme/eb-elation-flat-touch-categorypage.jpg"),
+        img("eb-theme/eb-elation-flat-touch-productpage.jpg"),
       ],
-      stack: [
-        {
-          icon: "icon-adobe",
-          title: "CreativeCloud",
-        },
-        {
-          icon: "icon-sass",
-          title: "CSS",
-        },
-        {
-          icon: "icon-html",
-          title: "HTML5",
-        },
-        {
-          icon: "icon-vue",
-          title: "JavaScript",
-        },
-        {
-          icon: "icon-jquery",
-          title: "jQuery",
-        },
-        {
-          icon: "icon-git",
-          title: "Git",
-        },
-      ],
+      stack: [],
     },
     {
       body: "Re-design of Loyola University Chicago online education platform, Indigo Learning Platform",
@@ -760,22 +571,17 @@ export const DATA = {
         url: "indigo.luc.edu",
       },
       name: "Indigo-Learning-Platform",
-      pictureHome: "/img/projects/luc/thumb.jpg",
+      pictureHome: img("luc/thumb.jpg"),
       projectTitle: "Loyola University Indigo",
       released: "Novenber 2014",
       roles: ["UX Design", "UI Design"],
       screens: [
-        "/img/projects/luc/02-phone.jpg",
-        "/img/projects/luc/02-desktop.jpg",
-        "/img/projects/luc/01.jpg",
-        "/img/projects/luc/03.jpg",
+        img("luc/02-phone.jpg"),
+        img("luc/02-desktop.jpg"),
+        img("luc/01.jpg"),
+        img("luc/03.jpg"),
       ],
-      stack: [
-        {
-          icon: "icon-adobe",
-          title: "CreativeCloud",
-        },
-      ],
+      stack: [],
     },
     {
       body: "Developed two custom jQuery plugins: eb Panel Nav Hashtag: A complete navigation system with panel transitions and hashtag enabled. And Password Requirements: The easy way to help users meet your minimum password requirements",
@@ -795,42 +601,17 @@ export const DATA = {
         url: "elationbase.com/jquery",
       },
       name: "EB-jQuery-Plugins",
-      pictureHome: "/img/projects/eb-jq/thumb.jpg",
+      pictureHome: img("eb-jq/thumb.jpg"),
       projectTitle: "Custom jQuery Plugins",
       released: "September 2014",
-      roles: ["UX Design", "jQuery Plugin Dev", "Front-end Developement"],
+      roles: ["UX Design", "jQuery Plugin Dev", "Front-end Development"],
       screens: [
-        "/img/projects/eb-jq/eb-jquery-home.jpg",
-        "/img/projects/eb-jq/eb-jquery-pass-home.jpg",
-        "/img/projects/eb-jq/eb-jquery-nav-home.jpg",
-        "/img/projects/eb-jq/eb-jquery-nav-usage.jpg",
+        img("eb-jq/eb-jquery-home.jpg"),
+        img("eb-jq/eb-jquery-pass-home.jpg"),
+        img("eb-jq/eb-jquery-nav-home.jpg"),
+        img("eb-jq/eb-jquery-nav-usage.jpg"),
       ],
-      stack: [
-        {
-          icon: "icon-adobe",
-          title: "CreativeCloud",
-        },
-        {
-          icon: "icon-sass",
-          title: "CSS",
-        },
-        {
-          icon: "icon-html",
-          title: "HTML5",
-        },
-        {
-          icon: "icon-vue",
-          title: "JavaScript",
-        },
-        {
-          icon: "icon-jquery",
-          title: "jQuery",
-        },
-        {
-          icon: "icon-git",
-          title: "Git",
-        },
-      ],
+      stack: [],
     },
   ],
 };
