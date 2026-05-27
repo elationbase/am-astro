@@ -35,14 +35,14 @@ const comments = [
   {
     comments.map(({ comment, user, position }) => (
       <>
-        <div class="flex gap-6 items-start">
+        <div class="md:flex gap-6 items-start">
           <p class="mb-6 leading-relaxed italic text-light font-light text-2xl flex-3">
             <span class="text-salmon text-4xl">"</span>
             {comment}
             <span class="text-salmon text-4xl">"</span>
           </p>
           <div class="flex gap-4 sticky top-20 flex-2 mt-3">
-            <hr class="mt-2 border border-b-light/20 flex-1" />
+            <hr class="mt-2 border border-b-light/20 flex-1 hidden md:block" />
             <p class="text-salmon font-mono flex-2">
               <span class="block">{user}</span>
               <span class="block text-light/40">{position}</span>

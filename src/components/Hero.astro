@@ -5,20 +5,20 @@ import HeroType from "./HeroType.astro";
 import Steam from "./Steam.astro";
 ---
 
-<section class="hero-section grid overflow-hidden h-[30vh] lg:h-[45vh] xl:h-[55vh] 2xl:h-[68vh] w-full bg-dark">
+<section class="hero-section grid overflow-hidden h-[25vh] sm:h-[30vh] lg:h-[45vh] xl:h-[55vh] 2xl:h-[68vh] w-full bg-dark">
   <HeroPath />
   <HeroType />
   <img
     src="/img/hero/am-desk.jpg"
     alt="Hero Image"
-    class="w-full animate-fade-in-slow col-start-1 row-start-1 opacity-0 min-h-96"
+    class="w-full animate-fade-in-slow col-start-1 row-start-1 opacity-0"
   />
   <div
     class="bg-linear-to-b from-transparent via-transparent to-black col-start-1 row-start-1 h-full w-full"
   >
   </div>
 
-  <div class="col-start-1 row-start-1 w-full grid place-items-center content-center">
+  <div class="col-start-1 row-start-1 w-full grid place-items-center content-start lg:content-center">
     <Tag />
   </div>
   <Steam />

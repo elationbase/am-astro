@@ -109,7 +109,7 @@ const { headline, description, base, skills } = DATA;
       Chapter 02 | whoAmI_ID
     </h2>
     <hr class="my-10 border border-light/20" />
-    <div class="flex gap-10 text-light font-light leading-relaxed">
+    <div class="flex flex-col md:flex-row gap-10 text-light font-light leading-relaxed">
       <p class="space-y-6 text-2xl flex-1">{base}</p>
       <div class="space-y-6 text-base md:text-lg flex-2">
         {description.map((paragraph) => <p>{paragraph}</p>)}

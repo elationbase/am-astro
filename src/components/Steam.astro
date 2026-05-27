@@ -1,6 +1,6 @@
 <div>
 
-  <div class="steam" aria-hidden="true">
+  <div class="steam absolute w-22.5 h-25 blur-sm opacity-85 pointer-none z-10 bottom-[14%] md:bottom-0 right-[1%]" aria-hidden="true">
     <span class="wisp"></span>
     <span class="wisp"></span>
     <span class="wisp"></span>
@@ -10,16 +10,8 @@
 </div>
 <style>
   .steam {
-    position: absolute;
     right: 5.5%;
-    bottom: 14%;
-    width: 90px;
-    height: 180px;
-    pointer-events: none;
-    z-index: 6;
-    filter: blur(6px);
     mix-blend-mode: screen;
-    opacity: 0.85;
   }
   .steam .wisp {
     position: absolute;
