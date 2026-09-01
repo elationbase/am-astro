@@ -7,5 +7,15 @@
 	},
 	"observability": {
 		"enabled": true
-	}
+	},
+  "routes": [
+    {
+      "pattern": "moterux.com",
+      "custom_domain": true
+    },
+    {
+      "pattern": "www.moterux.com",
+      "custom_domain": true
+    }
+  ]
 }
